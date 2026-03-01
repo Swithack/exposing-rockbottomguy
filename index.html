@@ -172,6 +172,33 @@ header {
     opacity: 0.8;
 }
 
+footer {
+    padding: 40px 0;
+    margin-top: 50px;
+    border-top: 1px solid var(--glass);
+    background: rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-content p:first-child {
+    color: var(--accent);
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+}
+
+.footer-content p:last-child {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
 .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 .gate-hidden { transform: translateY(-100%); pointer-events: none; }
@@ -929,9 +956,16 @@ header {
     
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+    <footer>
+    <div class="footer-content">
+        <p>ARCHIVE VERSION [v1.0.4]</p>
+        <p>©2026 LD_PURRR.</p>
+    </div>
+</footer>
 </body>
 
 </html>
+
 
 
 
