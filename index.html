@@ -92,7 +92,7 @@ header {
     border: 1px solid var(--glass);
     border-radius: 4px;
     overflow: hidden;
-    height: fit-content;
+    height: 100%;
 }
 
 .media-box {
@@ -204,6 +204,9 @@ header {
     padding: 20px;
     background: #0a0a0a;
     border-top: 1px solid var(--glass);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .info-panel h3 { 
@@ -214,11 +217,12 @@ header {
     text-transform: uppercase;
 }
 
-.info-panel p { 
+.info-panel p {
     color: #ffffff;
-    font-size: 0.85rem; 
-    line-height: 1.5;
+    font-size: 0.85rem;
+    line-height: 1.6;
     opacity: 0.8;
+    word-wrap: break-word;
 }
 
 footer {
@@ -970,6 +974,7 @@ footer {
 </body>
 
 </html>
+
 
 
 
