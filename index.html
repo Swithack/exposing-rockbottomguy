@@ -109,6 +109,30 @@ header {
     width: 100vw;
     height: 100vh;
 }
+
+.media-box.custom-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: #000;
+    aspect-ratio: auto;
+}
+
+.media-box.custom-fullscreen .item-media {
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    max-height: 100vh;
+    object-fit: contain;
+}
+
+.media-box.custom-fullscreen .btn-round {
+    background: var(--accent);
+    fill: #000;
+}
         
 .item-media { 
     max-width: 100%;
@@ -238,9 +262,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                             <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462765575602287/VoiceReveal.mp4?ex=69a582ad&is=69a4312d&hm=eae66b3f3e36fcc2133880c6590f5421189046bac7c9b6b121f2832180f7f6e5&" target="_blank" download class="btn-round">
                                 <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                             </a>
@@ -262,9 +283,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462717039247390/Face5.png?ex=69a582a1&is=69a43121&hm=58f09f6ab81b942a3555e1d0f13213133c20fdd0b3b039916570a758c8c09c66&=&format=webp&quality=lossless&width=530&height=350" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -280,9 +298,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477678888074215534/image_2.png?ex=69a5a334&is=69a451b4&hm=5716598e87579618ac4295c9d600a69d1be9b674ac7e5377307693f1824cb54b&=&format=webp&quality=lossless&width=719&height=401" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -298,9 +313,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477678888418021427/Screenshot_2026-02-22_151705.png?ex=69a5a334&is=69a451b4&hm=cbaaeb8047a8c6ee4966d573d92631a2651d063117db90995b5ef615a24c33ea&=&format=webp&quality=lossless&width=480&height=270" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -316,9 +328,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477678888967606274/Screenshot_2026-02-22_151855.png?ex=69a5a335&is=69a451b5&hm=f54203058626e9ff2705b8261099d3585380512333e4bca2eead46d1382102b5&=&format=webp&quality=lossless&width=481&height=267" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -334,9 +343,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462717643096246/Face1.png?ex=69a582a1&is=69a43121&hm=cbf912eb27f248ed7b8e60d229221b9f9a5afd7011908df05d78083bf9064a80&=&format=webp&quality=lossless&width=482&height=269" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -352,9 +358,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462718104600758/Face2.png?ex=69a582a1&is=69a43121&hm=be3f03276efb9f8120193a2d81941391c5c2c8027a047f3500dbc49aff07a50a&=&format=webp&quality=lossless&width=467&height=350" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -370,9 +373,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462718456791171/Face3.png?ex=69a582a2&is=69a43122&hm=567cf1fe73822dec23bfa76d0e026da0a0e1c8d319ef24a66fc78fa3f60fb335&=&format=webp&quality=lossless&width=467&height=350" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -388,9 +388,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462718922489976/Face4.png?ex=69a582a2&is=69a43122&hm=45735698856b23f629c2b1cdc3e5ffb8c51a1d5eb61d34fa0f1d10d3c136e11c&=&format=webp&quality=lossless&width=467&height=350" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -406,9 +403,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462743203450950/rockbottom1.png?ex=69a582a7&is=69a43127&hm=c6c7bcb7c9cd9e4579f7d8cfdb9ae9a6b9517b8d333c318779e01142bf887818&=&format=webp&quality=lossless&width=208&height=119" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -424,9 +418,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462743576481896/rockbottom2.png?ex=69a582a7&is=69a43127&hm=160cdfea93030742e5402a9f77e0260c9b8f72ac584b09d8f8b0d51d59675c4e&=&format=webp&quality=lossless&width=262&height=143" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -442,9 +433,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462743899705538/rockbottom3.png?ex=69a582a8&is=69a43128&hm=c95ecc5ca5f86963b7df9a3340e005586f6b7f52850442bcac4ecfaa3b5a0eaf&=&format=webp&quality=lossless&width=264&height=153" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -460,9 +448,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462744222662717/rockbottom4.png?ex=69a582a8&is=69a43128&hm=422459d5ca6062aa85d99221ed0b5c978ef87280ee9e0c95a8235fecd130b9c4&=&format=webp&quality=lossless&width=201&height=108" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -478,9 +463,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462744629252278/rockbottom5.png?ex=69a582a8&is=69a43128&hm=29761482c37d9653255960a8ddb4b2d5b44284e0216cba0f4db79461133285b6&=&format=webp&quality=lossless&width=205&height=112" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -496,9 +478,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462744990220460/rockbottom6.png?ex=69a582a8&is=69a43128&hm=cd5b014a800f1058eea39508f8d0492fadade05663ce1d61de2b2ee529a379fe&=&format=webp&quality=lossless&width=680&height=386" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -514,9 +493,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462745396809828/rockbottom7.png?ex=69a582a8&is=69a43128&hm=21a80034c3781859e66815ae5a2e80c000d65bb93c3a6f7dfcaeb69e644ced29&=&format=webp&quality=lossless&width=246&height=236" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -538,9 +514,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                             <a href="https://cdn.discordapp.com/attachments/1477462085993500896/1477463005938847744/2026-02-22_13-57-32.mkv?ex=69a582e6&is=69a43166&hm=faad91e5a6819cda226a4300b637094f934f2ecef5f06b131e5e68195363ecc9&" target="_blank" download class="btn-round">
                                 <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                             </a>
@@ -559,9 +532,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                             <a href="https://cdn.discordapp.com/attachments/1477462085993500896/1477463006223925338/2026-02-22_14-00-18.mkv?ex=69a582e6&is=69a43166&hm=0e381e7a250328d683b4f4e229b13b49bf01ce298eb4a81e61995c53376163e9&" target="_blank" download class="btn-round">
                                 <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                             </a>
@@ -580,9 +550,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                             <a href="https://cdn.discordapp.com/attachments/1477462085993500896/1477463006467063870/2026-02-22_14-00-53.mkv?ex=69a582e6&is=69a43166&hm=3f27eb856a336e1066360c22704c43e16d6e71c8e60924c290946d41165e0f29&" target="_blank" download class="btn-round">
                                 <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                             </a>
@@ -601,9 +568,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                             <a href="https://cdn.discordapp.com/attachments/1477462085993500896/1477463006769184982/2026-02-22_14-03-01.mkv?ex=69a582e6&is=69a43166&hm=aa54b5dffeddfa6eabe0cd47c18c27481433477be5b4be00809ebb2349d0c3d2&" target="_blank" download class="btn-round">
                                 <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                             </a>
@@ -622,9 +586,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                             <a href="https://cdn.discordapp.com/attachments/1477462085993500896/1477463007108792502/2026-02-22_14-05-03.mkv?ex=69a582e6&is=69a43166&hm=48d70a4034aa322eaae5718db65c03abc47c57cc1859543365ec6ec114d67286&" target="_blank" download class="btn-round">
                                 <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                             </a>
@@ -649,9 +610,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462699204939848/Curse1.png?ex=69a5829d&is=69a4311d&hm=f5bc092bc21fd13c28f076d51990c494a91aa612913eb312ef85d8f8e7f51431&=&format=webp&quality=lossless&width=117&height=222" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -667,9 +625,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462698907140146/Curse8.png?ex=69a5829d&is=69a4311d&hm=e4073861402815f6b8e6f7ee89e87f9590e115a0bbf2abdbd41a5bbb744cdd8a&=&format=webp&quality=lossless&width=148&height=146" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -685,9 +640,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462699498668113/Curse2.png?ex=69a5829d&is=69a4311d&hm=e373f4ff628384c816aa26e0815d465e1872f7e63605a3e7912a60754c72b0d5&=&format=webp&quality=lossless&width=246&height=349" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -703,9 +655,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462699808915606/Curse3.png?ex=69a5829d&is=69a4311d&hm=0dafb2ba9b594b524227c7c53f723da122e97f65dd637a90989e5db666df6f01&=&format=webp&quality=lossless&width=260&height=339" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -721,9 +670,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462700320624863/Curse4.png?ex=69a5829d&is=69a4311d&hm=fbc2845b2695b1d29263235989c2074cc2fdec8c65bdf5773b8a6ba6641e61e1&=&format=webp&quality=lossless&width=272&height=409" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -739,9 +685,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462700652101693/Curse5.png?ex=69a5829d&is=69a4311d&hm=3183018d454289132d837e0ba027850687d390958b7f363e02210eb82a0e7bf4&=&format=webp&quality=lossless&width=315&height=315" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -757,9 +700,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462700966543410/Curse6.png?ex=69a5829d&is=69a4311d&hm=195196d46e1be499aaeb10b809c03d220ec3b6759987e0d4bc1a24187d3e0e37&=&format=webp&quality=lossless&width=278&height=350" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -775,9 +715,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462701247565916/Curse7.png?ex=69a5829d&is=69a4311d&hm=70de43a5c28f1b4bb56622a26b5063dab9e473b8fcecaa55dec86ae9cd264914&=&format=webp&quality=lossless&width=272&height=409" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -793,9 +730,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462742318317751/smel.png?ex=69a582a7&is=69a43127&hm=77ddaba6174ac1b57596629d258e51f0617a02ee70ba72e74122563afeb81f34&=&format=webp&quality=lossless&width=194&height=245" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -811,9 +745,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477675904846135398/image-1.png?ex=69a5a06d&is=69a44eed&hm=90914fb61bcabf7c219d5b9301d76a0076da53e61c37fe0b288f92a89158d414&=&format=webp&quality=lossless&width=285&height=409" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -829,9 +760,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477675905605173409/image.png?ex=69a5a06d&is=69a44eed&hm=8940022de78fd532287ff2dc32e8b50eae8527ba381a2192e28da9f267075f28&=&format=webp&quality=lossless&width=285&height=409" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -847,9 +775,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477675904846135398/image-1.png?ex=69a5a06d&is=69a44eed&hm=90914fb61bcabf7c219d5b9301d76a0076da53e61c37fe0b288f92a89158d414&=&format=webp&quality=lossless&width=285&height=409" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -867,9 +792,6 @@ footer {
                  <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462765819138118/Infos.png?ex=69a582ad&is=69a4312d&hm=f5b37e6d8668052dedd4bcd3d9bb03f5d71fa13aa52a7098fa6f0397df48c0f7&=&format=webp&quality=lossless&width=496&height=358" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -886,9 +808,6 @@ footer {
                 <div class="item-card reveal">
                     <div class="media-box">
                         <div class="card-actions">
-                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
-                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                            </button>
                         <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462766154420375/InfosDescription.png?ex=69a582ad&is=69a4312d&hm=0b635acd5447cacaad6e688657e24b9ad108ccb64caeb22a4a0af8130bc3f6bb&=&format=webp&quality=lossless&width=405&height=249" target="_blank" download="footage_archive.webp" class="btn-round">
                             <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
                         </a>
@@ -910,61 +829,85 @@ footer {
 
     <script>
     function enterSite() {
-        document.getElementById('warning-gate').classList.add('gate-hidden');
-        document.getElementById('content').classList.add('visible');
+        const gate = document.getElementById('warning-gate');
+        const content = document.getElementById('content');
+        
+        gate.classList.add('gate-hidden');
+        content.classList.add('visible');
         document.body.style.overflow = 'auto';
     }
 
     function toggleFullscreen(btn) {
         const container = btn.closest('.media-box');
+        
+        container.classList.toggle('custom-fullscreen');
 
-        if (!document.fullscreenElement) {
-            if (container.requestFullscreen) {
-                container.requestFullscreen();
-            } else if (container.webkitRequestFullscreen) {
-                container.webkitRequestFullscreen();
-            } else if (container.msRequestFullscreen) {
-                container.msRequestFullscreen();
-            }
+        if (container.classList.contains('custom-fullscreen')) {
+            document.body.style.overflow = 'hidden';
         } else {
-            document.exitFullscreen();
+            document.body.style.overflow = 'auto';
         }
     }
 
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") {
+            const activeFullscreen = document.querySelector('.media-box.custom-fullscreen');
+            if (activeFullscreen) {
+                activeFullscreen.classList.remove('custom-fullscreen');
+                document.body.style.overflow = 'auto';
+            }
+        }
+    });
+
     const cards = document.querySelectorAll('.item-card');
+    
     cards.forEach(card => {
         const video = card.querySelector('video');
+        
         if (video) {
             card.addEventListener('mouseenter', () => {
                 video.muted = false;
-                video.play().catch(() => {
-                    
+                video.play().catch(error => {
+                    console.log("Autoplay prevented: ", error);
                 });
             });
+            
             card.addEventListener('mouseleave', () => {
                 video.pause();
                 video.currentTime = 0;
             });
         }
     });
-        
-    const observer = new IntersectionObserver((entries) => {
+
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('active');
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
         });
-    }, { threshold: 0.1 });
-    
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }, { 
+        threshold: 0.1 
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    const yearSpan = document.getElementById('year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
 </script>
     <footer>
     <div class="footer-content">
-        <p>ARCHIVE VERSION [v1.0.4]</p>
+        <p>ARCHIVE VERSION [v1.0.5]</p>
         <p>©2026 LD_PURRR.</p>
     </div>
 </footer>
 </body>
 
 </html>
+
 
 
 
