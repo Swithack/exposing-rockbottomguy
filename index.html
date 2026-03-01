@@ -133,6 +133,30 @@ header {
     background: var(--accent);
     fill: #000;
 }
+
+.progress-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.item-card:hover .progress-container {
+    opacity: 1;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    transition: width 0.1s linear;
+}
         
 .item-media { 
     max-width: 100%;
@@ -270,6 +294,9 @@ footer {
                         <video class="item-media" loop playsinline muted>
                             <source src="https://media.discordapp.net/attachments/1477462085993500896/1477462765575602287/VoiceReveal.mp4?ex=69a582ad&is=69a4312d&hm=eae66b3f3e36fcc2133880c6590f5421189046bac7c9b6b121f2832180f7f6e5&" type="video/mp4">
                         </video>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
                     </div>
 
                     <div class="info-panel">
@@ -522,6 +549,9 @@ footer {
                         <video class="item-media" loop playsinline muted>
                             <source src="https://cdn.discordapp.com/attachments/1477462085993500896/1477463005938847744/2026-02-22_13-57-32.mkv?ex=69a582e6&is=69a43166&hm=faad91e5a6819cda226a4300b637094f934f2ecef5f06b131e5e68195363ecc9&" type="video/mp4">
                         </video>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
                     </div>
 
                     <div class="info-panel">
@@ -540,6 +570,9 @@ footer {
                         <video class="item-media" loop playsinline muted>
                             <source src="https://cdn.discordapp.com/attachments/1477462085993500896/1477463006223925338/2026-02-22_14-00-18.mkv?ex=69a582e6&is=69a43166&hm=0e381e7a250328d683b4f4e229b13b49bf01ce298eb4a81e61995c53376163e9&" type="video/mp4">
                         </video>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
                     </div>
 
                     <div class="info-panel">
@@ -558,6 +591,9 @@ footer {
                         <video class="item-media" loop playsinline muted>
                             <source src="https://cdn.discordapp.com/attachments/1477462085993500896/1477463006467063870/2026-02-22_14-00-53.mkv?ex=69a582e6&is=69a43166&hm=3f27eb856a336e1066360c22704c43e16d6e71c8e60924c290946d41165e0f29&" type="video/mp4">
                         </video>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
                     </div>
 
                     <div class="info-panel">
@@ -576,6 +612,9 @@ footer {
                         <video class="item-media" loop playsinline muted>
                             <source src="https://cdn.discordapp.com/attachments/1477462085993500896/1477463006769184982/2026-02-22_14-03-01.mkv?ex=69a582e6&is=69a43166&hm=aa54b5dffeddfa6eabe0cd47c18c27481433477be5b4be00809ebb2349d0c3d2&" type="video/mp4">
                         </video>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
                     </div>
 
                     <div class="info-panel">
@@ -594,6 +633,9 @@ footer {
                         <video class="item-media" loop playsinline muted>
                             <source src="https://cdn.discordapp.com/attachments/1477462085993500896/1477463007108792502/2026-02-22_14-05-03.mkv?ex=69a582e6&is=69a43166&hm=48d70a4034aa322eaae5718db65c03abc47c57cc1859543365ec6ec114d67286&" type="video/mp4">
                         </video>
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
                     </div>
 
                     <div class="info-panel">
@@ -837,44 +879,31 @@ footer {
         document.body.style.overflow = 'auto';
     }
 
-    function toggleFullscreen(btn) {
-        const container = btn.closest('.media-box');
-        
-        container.classList.toggle('custom-fullscreen');
-
-        if (container.classList.contains('custom-fullscreen')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape") {
-            const activeFullscreen = document.querySelector('.media-box.custom-fullscreen');
-            if (activeFullscreen) {
-                activeFullscreen.classList.remove('custom-fullscreen');
-                document.body.style.overflow = 'auto';
-            }
-        }
-    });
-
     const cards = document.querySelectorAll('.item-card');
-    
+
     cards.forEach(card => {
         const video = card.querySelector('video');
+        const progressBar = card.querySelector('.progress-bar');
         
         if (video) {
+            if (progressBar) {
+                video.addEventListener('timeupdate', () => {
+                    const percentage = (video.currentTime / video.duration) * 100;
+                    progressBar.style.width = percentage + '%';
+                });
+            }
+
             card.addEventListener('mouseenter', () => {
                 video.muted = false;
                 video.play().catch(error => {
-                    console.log("Autoplay prevented: ", error);
+                    console.warn("Lecture bloquée par le navigateur :", error);
                 });
             });
             
             card.addEventListener('mouseleave', () => {
                 video.pause();
                 video.currentTime = 0;
+                if (progressBar) progressBar.style.width = '0%';
             });
         }
     });
@@ -900,15 +929,10 @@ footer {
 </script>
     <footer>
     <div class="footer-content">
-        <p>ARCHIVE VERSION [v1.0.5]</p>
+        <p>ARCHIVE VERSION [v1.0.6]</p>
         <p>©2026 LD_PURRR.</p>
     </div>
 </footer>
 </body>
 
 </html>
-
-
-
-
-
