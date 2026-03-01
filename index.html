@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exposing a Pedo.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+    --bg: #050000;
+    --card-bg: #0a0a0a;
+    --accent: #ff0000;
+    --text-white: #ffffff;
+    --glass: rgba(255, 0, 0, 0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text-white);
+    font-family: 'Inter', sans-serif;
+    background-image: radial-gradient(circle at center, #150000 0%, #050000 100%);
+}
+
+#warning-gate {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1);
+    text-align: center;
+}
+
+#warning-gate h2 { font-size: 3rem; letter-spacing: 10px; color: var(--accent); font-weight: 900; }
+.enter-btn {
+    background: none; border: 1px solid var(--accent); color: var(--accent);
+    padding: 15px 50px; font-weight: 900; letter-spacing: 4px; cursor: pointer; transition: 0.3s;
+    margin-top: 20px;
+}
+.enter-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 30px var(--accent); }
+
+header { 
+    height: 80vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+}
+
+.main-title { 
+    font-size: clamp(4rem, 18vw, 12rem); 
+    font-weight: 900; 
+    line-height: 0.8; 
+    letter-spacing: -4px; 
+    text-transform: uppercase; 
+}
+
+.title-white { color: #ffffff; }
+.title-red { 
+    color: var(--accent); 
+    text-shadow: 0 0 10px var(--accent), 0 0 40px var(--accent); 
+}
+
+.sub-description { 
+    margin-top: 30px; 
+    max-width: 600px; 
+    margin: 30px auto 0; 
+    font-size: 1.1rem; 
+    color: rgba(255, 255, 255, 0.4); 
+}
+
+.container { padding: 50px 8%; }
+
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+    gap: 30px; 
+}
+
+.item-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    border: 1px solid var(--glass);
+    border-radius: 4px;
+    overflow: hidden;
+    height: fit-content;
+}
+
+.media-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.item-media { 
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: saturate(0); 
+    transition: 0.5s ease;
+}
+
+.item-card:hover .item-media { filter: saturate(1); transform: scale(1.02); }
+
+.card-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: 0.3s ease;
+    z-index: 10;
+}
+
+.item-card:hover .card-actions { opacity: 1; transform: translateX(0); }
+
+.btn-round {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(0, 0, 0, 0.85); border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: 0.2s; backdrop-filter: blur(5px); fill: white;
+}
+
+.btn-round:hover { 
+    background: var(--accent); border-color: var(--accent); fill: black; 
+    box-shadow: 0 0 15px var(--accent); 
+}
+
+.btn-round svg { width: 18px; height: 18px; }
+
+.info-panel {
+    padding: 20px;
+    background: #0a0a0a;
+    border-top: 1px solid var(--glass);
+}
+
+.info-panel h3 { 
+    color: var(--accent);
+    font-size: 1.1rem; 
+    font-weight: 900; 
+    margin-bottom: 5px; 
+    text-transform: uppercase;
+}
+
+.info-panel p { 
+    color: #ffffff;
+    font-size: 0.85rem; 
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+.reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+.gate-hidden { transform: translateY(-100%); pointer-events: none; }
+.main-wrapper { opacity: 0; transition: 1s; visibility: hidden; }
+.visible { opacity: 1; visibility: visible; }
+    </style>
+</head>
+<body>
+
+    <div id="warning-gate">
+        <h2>WARNING</h2>
+        <p>This archive contains high-sensitive content such as pedophilia restricted to people under 13 years old. Proceed with caution.</p>
+        <button class="enter-btn" onclick="enterSite()">PROCEED</button>
+    </div>
+
+    <div class="main-wrapper" id="content">
+        <header>
+            <div class="reveal">
+                <h1 class="main-title">
+                    <span class="title-white">Exposing</span><br>
+                    <span class="title-red">A PEDO.</span>
+                </h1>
+                <p class="sub-description">
+                    Rockbotomguy is a british 22 years old pedophile who is talking to minors all day.
+                    Here's what he has done.
+                    - Taking his shirt off infront of minors.
+                    - Admitting to love children.
+                    - Attempting to socially assault minors.
+                </p>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="grid">
+                
+                <!-- voice reveals-->
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                            <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462765575602287/VoiceReveal.mp4?ex=69a582ad&is=69a4312d&hm=eae66b3f3e36fcc2133880c6590f5421189046bac7c9b6b121f2832180f7f6e5&" target="_blank" download class="btn-round">
+                                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                            </a>
+                        </div>
+        
+                        <video class="item-media" loop playsinline muted>
+                            <source src="https://media.discordapp.net/attachments/1477462085993500896/1477462765575602287/VoiceReveal.mp4?ex=69a582ad&is=69a4312d&hm=eae66b3f3e36fcc2133880c6590f5421189046bac7c9b6b121f2832180f7f6e5&" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="info-panel">
+                        <h3>Voice Reveal</h3>
+                        <p>Voice revealed in his youtube channel @rockdev-v5k</p>
+                    </div>
+                </div>
+
+                <!-- faces reveals-->
+
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462717039247390/Face5.png?ex=69a582a1&is=69a43121&hm=58f09f6ab81b942a3555e1d0f13213133c20fdd0b3b039916570a758c8c09c66&=&format=webp&quality=lossless&width=530&height=350" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462717039247390/Face5.png?ex=69a582a1&is=69a43121&hm=58f09f6ab81b942a3555e1d0f13213133c20fdd0b3b039916570a758c8c09c66&=&format=webp&quality=lossless&width=530&height=350" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Face Reveal #1</h3>
+                         <p>You can easly ask rockbottom to enable his camera when you are calling with him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462717643096246/Face1.png?ex=69a582a1&is=69a43121&hm=cbf912eb27f248ed7b8e60d229221b9f9a5afd7011908df05d78083bf9064a80&=&format=webp&quality=lossless&width=482&height=269" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462717643096246/Face1.png?ex=69a582a1&is=69a43121&hm=cbf912eb27f248ed7b8e60d229221b9f9a5afd7011908df05d78083bf9064a80&=&format=webp&quality=lossless&width=482&height=269" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Face Reveal #2</h3>
+                         <p>Rock bottom taking off his shit infront of minors.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462718104600758/Face2.png?ex=69a582a1&is=69a43121&hm=be3f03276efb9f8120193a2d81941391c5c2c8027a047f3500dbc49aff07a50a&=&format=webp&quality=lossless&width=467&height=350" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462718104600758/Face2.png?ex=69a582a1&is=69a43121&hm=be3f03276efb9f8120193a2d81941391c5c2c8027a047f3500dbc49aff07a50a&=&format=webp&quality=lossless&width=467&height=350" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Face Reveal #3</h3>
+                         <p>You can easly ask rockbottom to enable his camera when you are calling with him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462718456791171/Face3.png?ex=69a582a2&is=69a43122&hm=567cf1fe73822dec23bfa76d0e026da0a0e1c8d319ef24a66fc78fa3f60fb335&=&format=webp&quality=lossless&width=467&height=350" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462718456791171/Face3.png?ex=69a582a2&is=69a43122&hm=567cf1fe73822dec23bfa76d0e026da0a0e1c8d319ef24a66fc78fa3f60fb335&=&format=webp&quality=lossless&width=467&height=350" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Face Reveal #4</h3>
+                         <p>You can easly ask rockbottom to enable his camera when you are calling with him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462718922489976/Face4.png?ex=69a582a2&is=69a43122&hm=45735698856b23f629c2b1cdc3e5ffb8c51a1d5eb61d34fa0f1d10d3c136e11c&=&format=webp&quality=lossless&width=467&height=350" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462718922489976/Face4.png?ex=69a582a2&is=69a43122&hm=45735698856b23f629c2b1cdc3e5ffb8c51a1d5eb61d34fa0f1d10d3c136e11c&=&format=webp&quality=lossless&width=467&height=350" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Face Reveal #5</h3>
+                         <p>You can easly ask rockbottom to enable his camera when you are calling with him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462743203450950/rockbottom1.png?ex=69a582a7&is=69a43127&hm=c6c7bcb7c9cd9e4579f7d8cfdb9ae9a6b9517b8d333c318779e01142bf887818&=&format=webp&quality=lossless&width=208&height=119" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462743203450950/rockbottom1.png?ex=69a582a7&is=69a43127&hm=c6c7bcb7c9cd9e4579f7d8cfdb9ae9a6b9517b8d333c318779e01142bf887818&=&format=webp&quality=lossless&width=208&height=119" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Face Reveal #6</h3>
+                         <p>You can easly ask rockbottom to enable his camera when you are calling with him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462743576481896/rockbottom2.png?ex=69a582a7&is=69a43127&hm=160cdfea93030742e5402a9f77e0260c9b8f72ac584b09d8f8b0d51d59675c4e&=&format=webp&quality=lossless&width=262&height=143" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462743576481896/rockbottom2.png?ex=69a582a7&is=69a43127&hm=160cdfea93030742e5402a9f77e0260c9b8f72ac584b09d8f8b0d51d59675c4e&=&format=webp&quality=lossless&width=262&height=143" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Face Reveal #7</h3>
+                         <p>You can easly ask rockbottom to enable his camera when you are calling with him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462743899705538/rockbottom3.png?ex=69a582a8&is=69a43128&hm=c95ecc5ca5f86963b7df9a3340e005586f6b7f52850442bcac4ecfaa3b5a0eaf&=&format=webp&quality=lossless&width=264&height=153" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462743899705538/rockbottom3.png?ex=69a582a8&is=69a43128&hm=c95ecc5ca5f86963b7df9a3340e005586f6b7f52850442bcac4ecfaa3b5a0eaf&=&format=webp&quality=lossless&width=264&height=153" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Face Reveal #8</h3>
+                         <p>You can easly ask rockbottom to enable his camera when you are calling with him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462744222662717/rockbottom4.png?ex=69a582a8&is=69a43128&hm=422459d5ca6062aa85d99221ed0b5c978ef87280ee9e0c95a8235fecd130b9c4&=&format=webp&quality=lossless&width=201&height=108" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462744222662717/rockbottom4.png?ex=69a582a8&is=69a43128&hm=422459d5ca6062aa85d99221ed0b5c978ef87280ee9e0c95a8235fecd130b9c4&=&format=webp&quality=lossless&width=201&height=108" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Face Reveal #9</h3>
+                         <p>You can easly ask rockbottom to enable his camera when you are calling with him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462744629252278/rockbottom5.png?ex=69a582a8&is=69a43128&hm=29761482c37d9653255960a8ddb4b2d5b44284e0216cba0f4db79461133285b6&=&format=webp&quality=lossless&width=205&height=112" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462744629252278/rockbottom5.png?ex=69a582a8&is=69a43128&hm=29761482c37d9653255960a8ddb4b2d5b44284e0216cba0f4db79461133285b6&=&format=webp&quality=lossless&width=205&height=112" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Face Reveal #10</h3>
+                         <p>You can easly ask rockbottom to enable his camera when you are calling with him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462744990220460/rockbottom6.png?ex=69a582a8&is=69a43128&hm=cd5b014a800f1058eea39508f8d0492fadade05663ce1d61de2b2ee529a379fe&=&format=webp&quality=lossless&width=680&height=386" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462744990220460/rockbottom6.png?ex=69a582a8&is=69a43128&hm=cd5b014a800f1058eea39508f8d0492fadade05663ce1d61de2b2ee529a379fe&=&format=webp&quality=lossless&width=680&height=386" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Face Reveal #11</h3>
+                         <p>You can easly ask rockbottom to enable his camera when you are calling with him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462745396809828/rockbottom7.png?ex=69a582a8&is=69a43128&hm=21a80034c3781859e66815ae5a2e80c000d65bb93c3a6f7dfcaeb69e644ced29&=&format=webp&quality=lossless&width=246&height=236" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462745396809828/rockbottom7.png?ex=69a582a8&is=69a43128&hm=21a80034c3781859e66815ae5a2e80c000d65bb93c3a6f7dfcaeb69e644ced29&=&format=webp&quality=lossless&width=246&height=236" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Face Reveal #11 - alt</h3>
+                         <p>You can easly ask rockbottom to enable his camera when you are calling with him.</p>
+                    </div>
+                </div>
+
+
+                
+                
+
+                <!-- streams-->
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                            <a href="https://cdn.discordapp.com/attachments/1477462085993500896/1477463005938847744/2026-02-22_13-57-32.mkv?ex=69a582e6&is=69a43166&hm=faad91e5a6819cda226a4300b637094f934f2ecef5f06b131e5e68195363ecc9&" target="_blank" download class="btn-round">
+                                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                            </a>
+                        </div>
+        
+                        <video class="item-media" loop playsinline muted>
+                            <source src="https://cdn.discordapp.com/attachments/1477462085993500896/1477463005938847744/2026-02-22_13-57-32.mkv?ex=69a582e6&is=69a43166&hm=faad91e5a6819cda226a4300b637094f934f2ecef5f06b131e5e68195363ecc9&" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="info-panel">
+                        <h3>Stream Call Footage #1</h3>
+                        <p>We joined in a call with rockbottom and asked him to turn on his camera.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                            <a href="https://cdn.discordapp.com/attachments/1477462085993500896/1477463006223925338/2026-02-22_14-00-18.mkv?ex=69a582e6&is=69a43166&hm=0e381e7a250328d683b4f4e229b13b49bf01ce298eb4a81e61995c53376163e9&" target="_blank" download class="btn-round">
+                                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                            </a>
+                        </div>
+        
+                        <video class="item-media" loop playsinline muted>
+                            <source src="https://cdn.discordapp.com/attachments/1477462085993500896/1477463006223925338/2026-02-22_14-00-18.mkv?ex=69a582e6&is=69a43166&hm=0e381e7a250328d683b4f4e229b13b49bf01ce298eb4a81e61995c53376163e9&" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="info-panel">
+                        <h3>Stream Call Footage #2</h3>
+                        <p>We joined in a call with rockbottom and asked him to turn on his camera.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                            <a href="https://cdn.discordapp.com/attachments/1477462085993500896/1477463006467063870/2026-02-22_14-00-53.mkv?ex=69a582e6&is=69a43166&hm=3f27eb856a336e1066360c22704c43e16d6e71c8e60924c290946d41165e0f29&" target="_blank" download class="btn-round">
+                                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                            </a>
+                        </div>
+        
+                        <video class="item-media" loop playsinline muted>
+                            <source src="https://cdn.discordapp.com/attachments/1477462085993500896/1477463006467063870/2026-02-22_14-00-53.mkv?ex=69a582e6&is=69a43166&hm=3f27eb856a336e1066360c22704c43e16d6e71c8e60924c290946d41165e0f29&" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="info-panel">
+                        <h3>Stream Call Footage #3</h3>
+                        <p>We joined in a call with rockbottom and asked him to turn on his camera.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                            <a href="https://cdn.discordapp.com/attachments/1477462085993500896/1477463006769184982/2026-02-22_14-03-01.mkv?ex=69a582e6&is=69a43166&hm=aa54b5dffeddfa6eabe0cd47c18c27481433477be5b4be00809ebb2349d0c3d2&" target="_blank" download class="btn-round">
+                                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                            </a>
+                        </div>
+        
+                        <video class="item-media" loop playsinline muted>
+                            <source src="https://cdn.discordapp.com/attachments/1477462085993500896/1477463006769184982/2026-02-22_14-03-01.mkv?ex=69a582e6&is=69a43166&hm=aa54b5dffeddfa6eabe0cd47c18c27481433477be5b4be00809ebb2349d0c3d2&" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="info-panel">
+                        <h3>Stream Call Footage #4</h3>
+                        <p>We joined in a call with rockbottom and asked him to turn on his camera.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                            <a href="https://cdn.discordapp.com/attachments/1477462085993500896/1477463007108792502/2026-02-22_14-05-03.mkv?ex=69a582e6&is=69a43166&hm=48d70a4034aa322eaae5718db65c03abc47c57cc1859543365ec6ec114d67286&" target="_blank" download class="btn-round">
+                                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                            </a>
+                        </div>
+        
+                        <video class="item-media" loop playsinline muted>
+                            <source src="https://cdn.discordapp.com/attachments/1477462085993500896/1477463007108792502/2026-02-22_14-05-03.mkv?ex=69a582e6&is=69a43166&hm=48d70a4034aa322eaae5718db65c03abc47c57cc1859543365ec6ec114d67286&" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="info-panel">
+                        <h3>Stream Call Footage #5</h3>
+                        <p>We joined in a call with rockbottom and asked him to turn on his camera.</p>
+                    </div>
+                </div>
+
+                
+
+                
+                <!-- curses-->
+                
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462699204939848/Curse1.png?ex=69a5829d&is=69a4311d&hm=f5bc092bc21fd13c28f076d51990c494a91aa612913eb312ef85d8f8e7f51431&=&format=webp&quality=lossless&width=117&height=222" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462699204939848/Curse1.png?ex=69a5829d&is=69a4311d&hm=f5bc092bc21fd13c28f076d51990c494a91aa612913eb312ef85d8f8e7f51431&=&format=webp&quality=lossless&width=117&height=222" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Curse #1</h3>
+                         <p>We made multiples curses on him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462698907140146/Curse8.png?ex=69a5829d&is=69a4311d&hm=e4073861402815f6b8e6f7ee89e87f9590e115a0bbf2abdbd41a5bbb744cdd8a&=&format=webp&quality=lossless&width=148&height=146" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462698907140146/Curse8.png?ex=69a5829d&is=69a4311d&hm=e4073861402815f6b8e6f7ee89e87f9590e115a0bbf2abdbd41a5bbb744cdd8a&=&format=webp&quality=lossless&width=148&height=146" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Curse #2</h3>
+                         <p>We made multiples curses on him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462699498668113/Curse2.png?ex=69a5829d&is=69a4311d&hm=e373f4ff628384c816aa26e0815d465e1872f7e63605a3e7912a60754c72b0d5&=&format=webp&quality=lossless&width=246&height=349" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462699498668113/Curse2.png?ex=69a5829d&is=69a4311d&hm=e373f4ff628384c816aa26e0815d465e1872f7e63605a3e7912a60754c72b0d5&=&format=webp&quality=lossless&width=246&height=349" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Curse #3</h3>
+                         <p>We made multiples curses on him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462699808915606/Curse3.png?ex=69a5829d&is=69a4311d&hm=0dafb2ba9b594b524227c7c53f723da122e97f65dd637a90989e5db666df6f01&=&format=webp&quality=lossless&width=260&height=339" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462699808915606/Curse3.png?ex=69a5829d&is=69a4311d&hm=0dafb2ba9b594b524227c7c53f723da122e97f65dd637a90989e5db666df6f01&=&format=webp&quality=lossless&width=260&height=339" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Curse #4</h3>
+                         <p>We made multiples curses on him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462700320624863/Curse4.png?ex=69a5829d&is=69a4311d&hm=fbc2845b2695b1d29263235989c2074cc2fdec8c65bdf5773b8a6ba6641e61e1&=&format=webp&quality=lossless&width=272&height=409" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462700320624863/Curse4.png?ex=69a5829d&is=69a4311d&hm=fbc2845b2695b1d29263235989c2074cc2fdec8c65bdf5773b8a6ba6641e61e1&=&format=webp&quality=lossless&width=272&height=409" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Curse #5</h3>
+                         <p>We made multiples curses on him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462700652101693/Curse5.png?ex=69a5829d&is=69a4311d&hm=3183018d454289132d837e0ba027850687d390958b7f363e02210eb82a0e7bf4&=&format=webp&quality=lossless&width=315&height=315" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462700652101693/Curse5.png?ex=69a5829d&is=69a4311d&hm=3183018d454289132d837e0ba027850687d390958b7f363e02210eb82a0e7bf4&=&format=webp&quality=lossless&width=315&height=315" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Curse #6</h3>
+                         <p>We made multiples curses on him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462700966543410/Curse6.png?ex=69a5829d&is=69a4311d&hm=195196d46e1be499aaeb10b809c03d220ec3b6759987e0d4bc1a24187d3e0e37&=&format=webp&quality=lossless&width=278&height=350" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462700966543410/Curse6.png?ex=69a5829d&is=69a4311d&hm=195196d46e1be499aaeb10b809c03d220ec3b6759987e0d4bc1a24187d3e0e37&=&format=webp&quality=lossless&width=278&height=350" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Curse #7</h3>
+                         <p>We made multiples curses on him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462701247565916/Curse7.png?ex=69a5829d&is=69a4311d&hm=70de43a5c28f1b4bb56622a26b5063dab9e473b8fcecaa55dec86ae9cd264914&=&format=webp&quality=lossless&width=272&height=409" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462701247565916/Curse7.png?ex=69a5829d&is=69a4311d&hm=70de43a5c28f1b4bb56622a26b5063dab9e473b8fcecaa55dec86ae9cd264914&=&format=webp&quality=lossless&width=272&height=409" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Curse #8</h3>
+                         <p>We made multiples curses on him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462742318317751/smel.png?ex=69a582a7&is=69a43127&hm=77ddaba6174ac1b57596629d258e51f0617a02ee70ba72e74122563afeb81f34&=&format=webp&quality=lossless&width=194&height=245" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462742318317751/smel.png?ex=69a582a7&is=69a43127&hm=77ddaba6174ac1b57596629d258e51f0617a02ee70ba72e74122563afeb81f34&=&format=webp&quality=lossless&width=194&height=245" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Curse #9</h3>
+                         <p>We made multiples curses on him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477675904846135398/image-1.png?ex=69a5a06d&is=69a44eed&hm=90914fb61bcabf7c219d5b9301d76a0076da53e61c37fe0b288f92a89158d414&=&format=webp&quality=lossless&width=285&height=409" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477675904846135398/image-1.png?ex=69a5a06d&is=69a44eed&hm=90914fb61bcabf7c219d5b9301d76a0076da53e61c37fe0b288f92a89158d414&=&format=webp&quality=lossless&width=285&height=409" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Curse #10</h3>
+                         <p>We made multiples curses on him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477675905605173409/image.png?ex=69a5a06d&is=69a44eed&hm=8940022de78fd532287ff2dc32e8b50eae8527ba381a2192e28da9f267075f28&=&format=webp&quality=lossless&width=285&height=409" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477675905605173409/image.png?ex=69a5a06d&is=69a44eed&hm=8940022de78fd532287ff2dc32e8b50eae8527ba381a2192e28da9f267075f28&=&format=webp&quality=lossless&width=285&height=409" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Curse #11</h3>
+                         <p>We made multiples curses on him.</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477675904846135398/image-1.png?ex=69a5a06d&is=69a44eed&hm=90914fb61bcabf7c219d5b9301d76a0076da53e61c37fe0b288f92a89158d414&=&format=webp&quality=lossless&width=285&height=409" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477675904846135398/image-1.png?ex=69a5a06d&is=69a44eed&hm=90914fb61bcabf7c219d5b9301d76a0076da53e61c37fe0b288f92a89158d414&=&format=webp&quality=lossless&width=285&height=409" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>Curse #12</h3>
+                         <p>We made multiples curses on him.</p>
+                    </div>
+                </div>
+                
+                <!-- informations-->
+                 <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462765819138118/Infos.png?ex=69a582ad&is=69a4312d&hm=f5b37e6d8668052dedd4bcd3d9bb03f5d71fa13aa52a7098fa6f0397df48c0f7&=&format=webp&quality=lossless&width=496&height=358" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462765819138118/Infos.png?ex=69a582ad&is=69a4312d&hm=f5b37e6d8668052dedd4bcd3d9bb03f5d71fa13aa52a7098fa6f0397df48c0f7&=&format=webp&quality=lossless&width=496&height=358" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>IP ADDRESS</h3>
+                        <p>We caught him entering in a phishing website and got his informations.</p>
+                        <p>51.5085 (51° 30′ 30.71″ N) ; -0.1257 (0° 7′ 32.66″ W); 1577969034; 5607; 94.13.229.138; 94.0.0.0/12</p>
+                    </div>
+                </div>
+                <div class="item-card reveal">
+                    <div class="media-box">
+                        <div class="card-actions">
+                            <button class="btn-round" onclick="launchFullscreen(this)" title="Plein écran">
+                                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                            </button>
+                        <a href="https://media.discordapp.net/attachments/1477462085993500896/1477462766154420375/InfosDescription.png?ex=69a582ad&is=69a4312d&hm=0b635acd5447cacaad6e688657e24b9ad108ccb64caeb22a4a0af8130bc3f6bb&=&format=webp&quality=lossless&width=405&height=249" target="_blank" download="footage_archive.webp" class="btn-round">
+                            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </a>
+                    </div>
+        
+                    <img src="https://media.discordapp.net/attachments/1477462085993500896/1477462766154420375/InfosDescription.png?ex=69a582ad&is=69a4312d&hm=0b635acd5447cacaad6e688657e24b9ad108ccb64caeb22a4a0af8130bc3f6bb&=&format=webp&quality=lossless&width=405&height=249" class="item-media" alt="Archive Visual">
+                </div>
+                    <div class="info-panel">
+                        <h3>IP ADDRESS EXPLAINED</h3>
+                        <p>Here's a detailed overview of the log.</p>
+                        <p>51.5085 (51° 30′ 30.71″ N) ; -0.1257 (0° 7′ 32.66″ W); 1577969034; 5607; 94.13.229.138; 94.0.0.0/12</p>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function enterSite() {
+            document.getElementById('warning-gate').classList.add('gate-hidden');
+            document.getElementById('content').classList.add('visible');
+            document.body.style.overflow = 'auto';
+        }
+
+        function toggleFullscreen(btn) {
+            const card = btn.closest('.item-card');
+            const media = card.querySelector('.item-media');
+
+            if (media.requestFullscreen) {
+                media.requestFullscreen();
+            } else if (media.webkitRequestFullscreen) {
+                media.webkitRequestFullscreen();
+            } else if (media.msRequestFullscreen) {
+                media.msRequestFullscreen();
+            }
+        }
+
+        const cards = document.querySelectorAll('.item-card');
+        cards.forEach(card => {
+            const video = card.querySelector('video');
+            if (video) {
+                card.addEventListener('mouseenter', () => {
+                    video.muted = false;
+                    video.play().catch(() => {});
+                });
+                card.addEventListener('mouseleave', () => {
+                    video.pause();
+                    video.currentTime = 0;
+                });
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
