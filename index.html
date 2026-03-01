@@ -105,6 +105,11 @@ header {
     overflow: hidden;
 }
 
+.media-box:fullscreen .item-media {
+    width: 100vw;
+    height: 100vh;
+}
+        
 .item-media { 
     max-width: 100%;
     max-height: 100%;
@@ -877,49 +882,56 @@ header {
     </div>
 
     <script>
-        function enterSite() {
-            document.getElementById('warning-gate').classList.add('gate-hidden');
-            document.getElementById('content').classList.add('visible');
-            document.body.style.overflow = 'auto';
-        }
+    function enterSite() {
+        document.getElementById('warning-gate').classList.add('gate-hidden');
+        document.getElementById('content').classList.add('visible');
+        document.body.style.overflow = 'auto';
+    }
 
-        function toggleFullscreen(btn) {
-            const card = btn.closest('.item-card');
-            const media = card.querySelector('.item-media');
+    function toggleFullscreen(btn) {
+        const container = btn.closest('.media-box');
 
-            if (media.requestFullscreen) {
-                media.requestFullscreen();
-            } else if (media.webkitRequestFullscreen) {
-                media.webkitRequestFullscreen();
-            } else if (media.msRequestFullscreen) {
-                media.msRequestFullscreen();
+        if (!document.fullscreenElement) {
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            } else if (container.msRequestFullscreen) {
+                container.msRequestFullscreen();
             }
+        } else {
+            document.exitFullscreen();
         }
+    }
 
-        const cards = document.querySelectorAll('.item-card');
-        cards.forEach(card => {
-            const video = card.querySelector('video');
-            if (video) {
-                card.addEventListener('mouseenter', () => {
-                    video.muted = false;
-                    video.play().catch(() => {});
+    const cards = document.querySelectorAll('.item-card');
+    cards.forEach(card => {
+        const video = card.querySelector('video');
+        if (video) {
+            card.addEventListener('mouseenter', () => {
+                video.muted = false;
+                video.play().catch(() => {
+                    
                 });
-                card.addEventListener('mouseleave', () => {
-                    video.pause();
-                    video.currentTime = 0;
-                });
-            }
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
+            card.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        }
+    });
+        
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 
 </html>
+
 
 
